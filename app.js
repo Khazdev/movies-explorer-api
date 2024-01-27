@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
-const {errors} = require('celebrate');
+const { errors } = require('celebrate');
 
 const config = require('./config');
 
@@ -18,7 +18,7 @@ mongoose
 app.use(helmet());
 
 app.use(express.json());
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
 app.use(errors());
 
