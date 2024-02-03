@@ -6,6 +6,7 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rootRouter = require('./routes/index');
 const config = require('./config');
 const errorHandler = require('./middlewares/errorHandler');
+const limiter = require('./middlewares/rateLimiter');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(helmet());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(requestLogger);
+app.use(limiter);
 app.use(rootRouter);
 app.use(errorLogger);
 app.use(errors());
