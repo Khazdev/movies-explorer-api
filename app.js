@@ -5,6 +5,7 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const rootRouter = require('./routes/index');
 const config = require('./config');
+const errorHandler = require('./middlewares/errorHandler');
 
 const app = express();
 
@@ -24,7 +25,7 @@ app.use(requestLogger);
 app.use(rootRouter);
 app.use(errorLogger);
 app.use(errors());
-
+app.use(errorHandler);
 app.listen(config.port, () => {
   console.log(`Server is running on port ${config.port}`);
 });
