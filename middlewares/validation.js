@@ -1,4 +1,4 @@
-const { Joi, celebrate } = require('celebrate');
+const { Joi, celebrate, Segments } = require('celebrate');
 
 module.exports.validateLogin = celebrate({
   body: Joi.object().keys({
@@ -11,6 +11,13 @@ module.exports.validateCreateUser = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
     password: Joi.string().required(),
+  }),
+});
+
+module.exports.validateUpdateUser = celebrate({
+  body: Joi.object().keys({
+    email: Joi.string().required().email(),
+    name: Joi.string().required(),
   }),
 });
 
@@ -27,5 +34,11 @@ exports.validateCreateMovie = celebrate({
     movieId: Joi.number().required(),
     nameRU: Joi.string().required(),
     nameEN: Joi.string().required(),
+  }),
+});
+
+module.exports.validateGetMovie = celebrate({
+  [Segments.PARAMS]: Joi.object().keys({
+    id: Joi.string().required(),
   }),
 });
