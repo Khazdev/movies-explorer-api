@@ -2,7 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const helmet = require('helmet');
 const { errors } = require('celebrate');
-
+const { requestLogger, errorLogger } = require('./middlewares/logger');
+const rootRouter = require('./routes/index');
 const config = require('./config');
 
 const app = express();
@@ -19,7 +20,9 @@ app.use(helmet());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(requestLogger);
+app.use(rootRouter);
+app.use(errorLogger);
 app.use(errors());
 
 app.listen(config.port, () => {
