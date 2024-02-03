@@ -1,9 +1,7 @@
 const router = require('express').Router();
-const { updateUser } = require('../controllers/user');
+const { updateUser, getCurrentUser } = require('../controllers/user');
 
-router.get('/users/me', (req, res) => {
-  res.send('Get user information');
-});
+router.get('/users/me', getCurrentUser);
 
 router.patch('/users/me', updateUser);
 
