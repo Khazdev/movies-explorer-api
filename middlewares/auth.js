@@ -3,7 +3,7 @@ const NotAuthorizedError = require('../errors/NotAuthorizedError');
 const config = require('../config');
 
 module.exports = (req, res, next) => {
-  const token = req.headers.authorization.replace("Bearer ", "");;
+  const token = req.headers.authorization.replace('Bearer ', '');
 
   if (!token) {
     return next(new NotAuthorizedError('Требуется авторизация'));
