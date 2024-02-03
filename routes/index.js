@@ -7,11 +7,10 @@ const NotFoundError = require('../errors/NotFoundError');
 
 const router = express.Router();
 
-router.use('/signin', authorization);
-router.use('/signup', authorization);
+router.use('/', authorization);
 router.use(authentication);
-router.use('/users', userRoutes);
-router.use('/movies', movieRoutes);
+router.use('/', userRoutes);
+router.use('/', movieRoutes);
 
 router.use('*', () => {
   throw new NotFoundError('Здесь ничего нет :)');
