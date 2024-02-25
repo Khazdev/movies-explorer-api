@@ -48,6 +48,7 @@ module.exports.updateUser = (req, res, next) => {
 };
 
 module.exports.createUser = (req, res, next) => {
+  console.log('asdas');
   const {
     email,
     password,
